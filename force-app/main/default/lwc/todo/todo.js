@@ -1,6 +1,5 @@
 import { LightningElement, api, track } from 'lwc';
 import TodoList from '@salesforce/resourceUrl/todolist';
-import getTaskApexMethod from '@salesforce/apex/TodoApex.getTasks';
 import submitTaskDoneApexMethod from '@salesforce/apex/TodoApex.submitTaskDone';
 import TaskToastMessageLabel from '@salesforce/label/c.TaskToastMessage';
 import SaveButtonLabel from '@salesforce/label/c.SaveButton';
@@ -66,7 +65,7 @@ export default class Todo extends LightningElement {
         let arrayItemList = [];  
         let parentThis = this;
         this.showSpinner = true;
-        callApexWithCallbackMethod(this, '', 'TodoGetTasks', this.responseHandler);
+        callApexWithCallbackMethod(this, {}, 'TodoGetTasks', this.responseHandler);
         /*
         callApexMethod('', 'TodoGetTasks').then(result => {
             console.log(result);

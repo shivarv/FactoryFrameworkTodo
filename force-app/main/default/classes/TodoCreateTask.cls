@@ -1,7 +1,6 @@
 public with sharing class TodoCreateTask implements IService{
     public static void execute(ProcessRequestInput input, ProcessRequestOutput output) {
-        createTask();
-        output.outputData = '';
+        createTask((String) input.inputDataMap.get('taskDetail'));
     }
 
     public static void createTask(String taskDetail) {

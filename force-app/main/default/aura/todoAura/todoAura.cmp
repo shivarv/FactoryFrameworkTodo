@@ -1,9 +1,10 @@
 <aura:component extends="c:auraComponentSC" implements="flexipage:availableForAllPageTypes">
+    
     <aura:attribute name="todoItemList" type="List"/>
     <aura:attribute name="showSpinner" type="Boolean"/>
     <aura:handler name="init" value="{!this}" action="{!c.doInit}"/>
     <div class="middle task-list backgroundImg">
-        <h2 class="slds-p-bottom_x-small">My Tasks</h2>
+        <h2>My Tasks</h2>
         <aura:iteration items="{!v.todoItemList}" var="indTodoItem">
             <div>
                 <c:todoItemAura todoItem="{!indTodoItem}" ></c:todoItemAura>
@@ -14,4 +15,4 @@
     <aura:if isTrue="{!v.showSpinner}">
         <lightning:spinner alternative-text="Loading"></lightning:spinner>
     </aura:if>
-</aura:component>
+</aura:component> 

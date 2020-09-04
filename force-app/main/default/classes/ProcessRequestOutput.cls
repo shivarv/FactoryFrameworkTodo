@@ -4,7 +4,7 @@ public with sharing class ProcessRequestOutput {
     public Boolean isError; // class name that implements Iservice interface
     public List<String> errorMessages;
     public ProcessRequestOutput() {
-        this.outputData = '';
+        this.outputData = '""';
         this.isError  = false;
         this.errorMessages = new List<String>();
     }

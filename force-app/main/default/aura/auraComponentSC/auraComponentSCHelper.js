@@ -17,13 +17,16 @@
     callApex : function(component, inputDataObject, className, callback) {
         var action;
         let helper = this;
+        let inputDataValue;
         let requestParameters;
         let inputData;
         if(!component || (!className)) {
             return;
         }
         action = component.get("c.process");
-        requestParameters = {inputData: inputDataObject, className : className};
+        inputDataValue = !inputDataObject || JSON.stringify(inputDataObject) === '{}'?
+                                        '""' : JSON.stringify(inputDataObject);
+        requestParameters = {inputData: inputDataValue, className : className};
         inputData = JSON.stringify(requestParameters); 
         action.setParams({ "inputData" : inputData });
         action.setCallback(this, function(result) {

@@ -1,6 +1,7 @@
 public with sharing class TodoGetTasks implements IService{
     public static void execute(ProcessRequestInput input, ProcessRequestOutput output) {
         List<Map<String, Object>> returnData = getTasks();
+        System.debug(JSON.serialize(returnData));
         output.outputData = JSON.serialize(returnData);
     }
 

@@ -1,25 +1,25 @@
-.THIS .task {
+.THIS.task {
     display: flex;
     padding: 10px 0;
     align-items: center;
     cursor: pointer;
 }
 
-.THIS .task input {
+.THIS.task input {
     position: absolute;
     visibility: hidden;
 }
 
-.THIS .task input:checked ~ i  {
+.THIS.task input:checked ~ i  {
     color: #e74c3c;
 }
 
-.THIS .task input:checked ~ .text {
+.THIS.task input:checked ~ .text {
     text-decoration: line-through;
     color: #e74c3c;
 }
 
-.THIS .task i {
+.THIS.task i {
     display: inline-block;
     width: 48px;
     height: 48px;
@@ -32,7 +32,7 @@
     color: transparent;
 }
 
-.THIS .text {
+.THIS.text {
     font-size: 18px;
  /*   color: #fff; */
 }

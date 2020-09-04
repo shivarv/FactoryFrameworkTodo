@@ -1,7 +1,7 @@
 <aura:component>
     <aura:attribute name="todoItem" type="Map" access="public" />
     <aura:registerEvent name="todoEvent" type="c:todoCheckEvent"/>
-
+    <ltng:require styles="{!join(',', $Resource.FontAwesome + '/fontawesome/css/all.css')}"  />
     <label class="task">
         <input type="checkbox" checked="{!v.todoItem.isCompleted}" onchange="{!c.onchangeCheckBox}"> </input>
         <i class="fas fa-check"></i>

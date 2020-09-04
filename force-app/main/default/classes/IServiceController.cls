@@ -8,8 +8,19 @@ public class IServiceController {
         ProcessRequestInput input = (ProcessRequestInput) JSON.deserialize(inputData, ProcessRequestInput.class);
         ProcessRequestOutput output = new ProcessRequestOutput();
         IService service;
+        System.debug('input '+ input);
         try {
             className = input.className;
+            System.debug(' input.inputData '+ input.inputData + ' '+ (input.inputData != null) + ' ' 
+            + !String.isBlank(input.inputData)
+            );
+            if(input.inputData == '""') {
+                input.inputData = '';
+            }
+            if(input.inputData != null &&  !String.isBlank(input.inputData)) {
+                System.debug('before deserialise ');
+                input.inputDataMap = (Map<String, Object>) JSON.deserializeUntyped(input.inputData);
+            }
             classTypeInst = Type.forName(className);
             service = (IService) classTypeInst.newInstance();
             if(service != null) {

@@ -6,13 +6,17 @@ import executeApex from '@salesforce/apex/IServiceController.process';
 
     const callApexWithCallbackMethod = function(componentRef, inputDataObject, className, callback) {
         console.log(' callApexWithCallbackMethod method ');
-        let requestParameters = {inputData: inputDataObject, className : className};
+        let inputDataValue = !inputDataObject || JSON.stringify(inputDataObject) === '{}'?
+                                     '""' : JSON.stringify(inputDataObject);
+
+        let requestParameters = {inputData: inputDataValue, className : className};
         let inputData = JSON.stringify(requestParameters); 
         executeApex({inputData: inputData}).then(result => {
             console.log(" result " +result);
             let resultObj = JSON.parse(result);
             console.log(" resultObj " +JSON.stringify(resultObj));
-            let outputDataObj  = JSON.parse(resultObj.outputData);
+            let outputDataObj  = !resultObj || !resultObj.outputData ? '""': 
+                                                JSON.parse(resultObj.outputData);
             if(resultObj.isError === true) {
                 showToastHelper(componentRef, 'error', 'Callback error ' + resultObj.errorMessages
                      , [], 'error', 'dismissable' );
@@ -28,9 +32,10 @@ import executeApex from '@salesforce/apex/IServiceController.process';
                             [], 'error', 'dismissable' );
         })
     }
-    const callApexMethod = function(inputDataObject, className) {
+    const callApexMethod = function(inputParam, className) {
         console.log(' call apex method ');
-        let requestParameters = {inputData: inputDataObject, className : className};
+        let inputDataValue = !inputParam || JSON.stringify(inputParam) === '{}'? '""' : JSON.stringify(inputParam);
+        let requestParameters = {inputData: inputDataValue, className : className};
         let inputData = JSON.stringify(requestParameters); 
         return  executeApex({inputData: inputData});
     } 
