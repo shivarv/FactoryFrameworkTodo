@@ -1,0 +1,45 @@
+:host {
+    display: block;
+    background: whitesmoke;
+    margin: auto;
+    margin-top: 12%;
+   
+}
+
+h2 {
+    font-size: 21px;
+    padding-bottom: 0.5rem;
+    /* text-decoration: solid; */
+    text-transform: uppercase;
+    font-weight: bold;
+}
+
+.middle {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.task-list {
+   /* width: 500px; */
+    padding: 15px;
+}
+
+.sub-button {
+    margin-top: 1rem;
+    height: 3rem;
+    width: 8rem;
+    align-items: center;
+    margin-left: 3rem;
+    border-radius: 40%;
+    color: #e74c3c;
+    font-size: 18px;
+}
+
+.sub-button:active, 
+.sub-button:focus 
+{
+    border-radius: 40%;
+    color: #e74c3c;
+}

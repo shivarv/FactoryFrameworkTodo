@@ -1,0 +1,38 @@
+.task{
+    display: flex;
+    padding: 10px 0;
+    align-items: center;
+    cursor: pointer;
+}
+
+.task input {
+    position: absolute;
+    visibility: hidden;
+}
+
+.task input:checked ~ i  {
+    color: #e74c3c;
+}
+
+.task input:checked ~ .text {
+    text-decoration: line-through;
+    color: #e74c3c;
+}
+
+.task i {
+    display: inline-block;
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 1px solid #ddd;
+    text-align: center;
+    line-height: 48px;
+    font-size: 20px;
+    margin-right: 14px;
+    color: transparent;
+}
+
+.text {
+    font-size: 18px;
+ /*   color: #fff; */
+}

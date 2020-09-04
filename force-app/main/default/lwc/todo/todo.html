@@ -1,0 +1,15 @@
+<template>
+    <div class="middle task-list" style={cusstyle}>
+        <h2>My Tasks</h2>
+        <template for:each={todoItemList} for:item="indTodoItem">
+            <div key={indTodoItem.itemNo}>
+                <c-todo-item todo-item={indTodoItem} 
+                            oncheckselected={oncheckselectedMethod}></c-todo-item>
+            </div>
+        </template>
+        <button onclick={saveChanges} class="sub-button">{label.SaveButtonLabel}</button>
+    </div>
+    <template if:true={showSpinner}>
+        <lightning-spinner alternative-text="Loading"></lightning-spinner>
+    </template>
+</template>

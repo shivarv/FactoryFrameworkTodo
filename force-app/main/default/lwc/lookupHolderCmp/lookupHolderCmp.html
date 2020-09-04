@@ -1,0 +1,31 @@
+<template>
+    <div class="slds-card">
+        <c-custom-lookup field-label="Select Case Record" child-object-api-name='Case' 
+            data-id='comp1' component-refer-id='comp1'
+            target-field-api-name='case__c' required onvalueselected={handleValueSelcted}
+            onitemdrag={handleItemDrag} onitemdrop={handleDrop}
+            ></c-custom-lookup>
+        The selected record Id is:- {selectedRecordId1}
+    </div>
+    <div class="slds-card">
+        <c-custom-lookup field-label="Select Case Record" child-object-api-name='Case' 
+            data-id='comp2' component-refer-id='comp2'
+            target-field-api-name='case__c' required onvalueselected={handleValueSelcted}
+            onitemdrag={handleItemDrag} onitemdrop={handleDrop}
+            ></c-custom-lookup>
+        The selected record Id is:- {selectedRecordId2}
+    </div>
+    <div class="slds-card">
+        <c-custom-lookup field-label="Select Case Record" child-object-api-name='Case' 
+            data-id='comp3' component-refer-id='comp3'
+            target-field-api-name='case__c' required onvalueselected={handleValueSelcted}
+            onitemdrag={handleItemDrag} onitemdrop={handleDrop}></c-custom-lookup>
+        The selected record Id is:- {selectedRecordId3}
+    </div>
+    <lightning-button
+        variant="brand"
+        label="Start"
+        title="Begins the task"
+        onclick={handleClick}>
+    </lightning-button>
+</template>

@@ -1,0 +1,7 @@
+<template>
+    <label class="task">
+        <input type="checkbox" checked={todoItem.isCompleted} onchange={onchangeCheckBox}>
+        <i class="fas fa-check"></i>
+        <span class="text">{todoItem.itemDetails}</span>
+    </label>
+</template>

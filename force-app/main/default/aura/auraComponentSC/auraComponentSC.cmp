@@ -1,0 +1,3 @@
+<aura:component extensible="true" controller="IServiceController">
+{!v.body}
+</aura:component>	

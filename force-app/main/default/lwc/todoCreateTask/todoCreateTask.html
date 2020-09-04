@@ -1,0 +1,20 @@
+<template>
+    <label class="task">
+        <i class="fas fa-check"></i>
+        <span class="text">
+            <lightning-textarea
+                    name="taskDetail"
+                    value=""
+                    label="Task Detail"
+                    max-length="300"
+                    onchange= {handleTextChange}
+            >
+            </lightning-textarea>
+        </span>
+        <lightning-button label="Create Task" 
+                onclick={createTask} 
+                class="slds-m-left_x-small">
+        </lightning-button>
+
+    </label>
+</template>

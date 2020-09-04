@@ -1,0 +1,10 @@
+<aura:component>
+    <aura:attribute name="todoItem" type="Map" access="public" />
+    <aura:registerEvent name="todoEvent" type="c:todoCheckEvent"/>
+
+    <label class="task">
+        <input type="checkbox" checked="{!v.todoItem.isCompleted}" onchange="{!c.onchangeCheckBox}"> </input>
+        <i class="fas fa-check"></i>
+        <span class="text">{!v.todoItem.itemDetails}</span>
+    </label>
+</aura:component>
