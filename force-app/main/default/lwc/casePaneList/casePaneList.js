@@ -2,7 +2,7 @@ import { LightningElement, track } from 'lwc';
 
 export default class CasePaneList extends LightningElement {
     @track caseIdList;
-    recordName;
+    @track recordName;
     targetApiName='case__c';
     required = true;
 
@@ -18,7 +18,7 @@ export default class CasePaneList extends LightningElement {
         if(this.caseIdList.length > 2) {
             return;
         }
-        this.caseIdList.push({key: this.caseIdList.length, value: caseId});
+        this.caseIdList.push({key: this.caseIdList.length, value: String(caseId)});
     }
 
     handleItemDrag(event) {
