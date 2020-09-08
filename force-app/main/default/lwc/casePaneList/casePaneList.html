@@ -1,0 +1,18 @@
+<template>
+    <div class="slds-card">
+        <c-case-search onvalueselected={handleValueSelected}
+            component-refer-id='searchCmp'
+            data-id='search' target-field-api-name={targetApiName} required={required}
+            onitemdrag={handleItemDrag} onitemdrop={handleDrop}
+        ></c-case-search>
+    </div>
+    <template if:true={caseIdList.length}>
+        <template for:each={caseIdList} for:item="caseId">
+            <div key={caseId.key}>
+                <c-case-panel-item case-id={caseId.value}
+                        object-api-name={recordName}
+                ></c-case-panel-item>
+            </div>
+        </template>
+    </template>
+</template>

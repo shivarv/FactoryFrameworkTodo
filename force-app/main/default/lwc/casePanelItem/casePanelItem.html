@@ -1,0 +1,13 @@
+<template>
+    <lightning-card variant="narrow" icon-name="standard:case">
+        <div slot="actions">
+            <lightning-button-icon icon-name="utility:down"></lightning-button-icon>
+        </div>
+        <lightning-record-form
+            record-id={caseId}
+            object-api-name={objectApiName}
+            mode="edit"
+            fields={fields}>
+        </lightning-record-form>
+    </lightning-card>
+</template>
