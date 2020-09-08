@@ -7,12 +7,16 @@
         ></c-case-search>
     </div>
     <template if:true={caseIdList.length}>
-        <template for:each={caseIdList} for:item="caseId">
-            <div key={caseId.key}>
-                <c-case-panel-item case-id={caseId.value}
-                        object-api-name={recordName}
-                ></c-case-panel-item>
-            </div>
-        </template>
+        <div class="slds-grid slds-gutters">
+            <template for:each={caseIdList} for:item="caseId">
+                <div key={caseId.key} class="slds-col">
+                    <span>
+                        {caseId.value}
+                        <c-case-panel-item case-id={caseId.value} object-api-name={recordName}>
+                        </c-case-panel-item>
+                    </span>
+                </div>
+            </template>
+        </div>
     </template>
 </template>

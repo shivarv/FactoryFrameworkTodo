@@ -15,4 +15,4 @@
     <aura:if isTrue="{!v.showSpinner}">
         <lightning:spinner alternative-text="Loading"></lightning:spinner>
     </aura:if>
-</aura:component> 
+</aura:component>

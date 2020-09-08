@@ -5,7 +5,7 @@ import CASECUST_FIELD from '@salesforce/schema/Case.case__c';
 import STATUS_FIELD from '@salesforce/schema/Case.Status'; 
 import SUBJECT_FIELD from '@salesforce/schema/Case.Subject';
 export default class CasePanelItem extends LightningElement {
-    @api caseId;
+    @api caseId = '5004K0000029nUHQAY';
     @api objectApiName;
     objectApiName = 'Case';
     fields = [PRIORITY_FIELD, CASENUMBER_FIELD, CASECUST_FIELD, 

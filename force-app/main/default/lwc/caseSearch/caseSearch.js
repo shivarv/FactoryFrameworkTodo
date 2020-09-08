@@ -11,8 +11,9 @@ export default class CustomLookup extends LightningElement {
 
     handleChange(event) {
         console.log('in handle change ');
-        if(!event.detail.value) {
-            alert(' empty ');
+        //alert(JSON.stringify(event.detail.value));
+        if(!event.detail.value || event.detail.value.length === 0) {
+            //alert(' empty ');
             return;
         }
         this.fireEvent(event.detail.value);
