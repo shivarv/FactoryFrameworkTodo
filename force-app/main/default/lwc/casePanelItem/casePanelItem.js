@@ -6,8 +6,10 @@ import STATUS_FIELD from '@salesforce/schema/Case.Status';
 import SUBJECT_FIELD from '@salesforce/schema/Case.Subject';
 export default class CasePanelItem extends LightningElement {
     //@api recordId = '5004K0000029nUHQAY';
+    isRenderedValue = false;
     @api recordId;
     @api objectApiName = 'Case';
+    @api  componentReferenceId;
     fields = [PRIORITY_FIELD, CASENUMBER_FIELD, CASECUST_FIELD, 
         STATUS_FIELD, SUBJECT_FIELD];
   
@@ -39,4 +41,22 @@ export default class CasePanelItem extends LightningElement {
         return !this.recordId  ;
     }
 
+    handleValueSelected(event) {
+        let caseId = event.detail.value;
+        alert(caseId);
+    }
+
+    renderedCallback() {
+        alert(' in rendered callback');
+        debugger;
+        if(this.isRenderedValue === true) {
+            return;
+        }
+        this.isRenderedValue = true;
+        let val = '5004K0000029nUHQAY';
+        let cSearchTemplete = this.template.querySelector('c-custom-lookup');
+        console.log(' rendered callback ' + cSearchTemplete);
+        cSearchTemplete.setCaseId(val);
+            
+    }
 }

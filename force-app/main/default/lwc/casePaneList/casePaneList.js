@@ -18,7 +18,7 @@ export default class CasePaneList extends LightningElement {
         if(this.caseIdList.length > 2) {
             return;
         }
-        this.caseIdList.push({key: this.caseIdList.length, value: String(caseId)});
+        this.caseIdList.push({key: 'case'+this.caseIdList.length, value: String(caseId)});
     }
 
     handleItemDrag(event) {

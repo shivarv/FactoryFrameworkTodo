@@ -3,7 +3,6 @@
  
     <lightning-card variant="narrow" icon-name="standard:case" >
         <div slot="actions">
-            {recordId} {objectApiName}
             <lightning-button-icon icon-name="utility:down"></lightning-button-icon>
         </div>
         <lightning-record-edit-form record-id={recordId}
@@ -16,8 +15,11 @@
             </lightning-input-field>
             <lightning-input-field field-name="Subject">
             </lightning-input-field>
-            <lightning-input-field field-name="case__c">
-            </lightning-input-field>
+            <c-case-search onvalueselected={handleValueSelected}
+                component-refer-id={componentReferenceId}
+                target-field-api-name='case__c'
+                onitemdrag={handleItemDrag} onitemdrop={handleDrop}
+            ></c-case-search>
             <lightning-button
                 class="slds-m-top_small"
                 variant="brand"
