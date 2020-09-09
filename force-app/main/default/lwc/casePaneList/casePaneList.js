@@ -5,7 +5,8 @@ export default class CasePaneList extends LightningElement {
     @track recordName;
     targetApiName='case__c';
     required = true;
-
+    @track draggedCaseId;
+    @track draggedComponentId;
     selectedRecordId1;
     constructor() {
         super();
@@ -21,12 +22,13 @@ export default class CasePaneList extends LightningElement {
         this.caseIdList.push({key: 'case'+this.caseIdList.length, value: String(caseId)});
     }
 
-    handleItemDrag(event) {
-
+    handleItemDragStart(event) {
+        this.draggedCaseId = event.detail.value;
+        console.log(' in handleItemDragStart method '+ this.draggedCaseId);
     }
 
-    handleDrop(event) {
-        
+    handeItemDragOver(ev) {
+        ev.preventDefault();
     }
 
 }

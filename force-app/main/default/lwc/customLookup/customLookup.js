@@ -30,7 +30,6 @@ export default class CustomLookup extends LightningElement {
         }
     }
 
-
     @api setCaseId(val) {
        // this.template.querySelector('lightning-input-field').val
         this.value = String(val);
@@ -40,20 +39,20 @@ export default class CustomLookup extends LightningElement {
 
     handleItemDragStart(ev) {
         const event = new CustomEvent('itemdrag', {
-            detail:  {id: this.componentReferId, value: this.value}
+            detail:  {id: this.componentReferId, value: String(this.value)},
+            bubbles: true, composed: true
         });
         this.dispatchEvent(event);
     }
 
     handleDrop(ev) {
         const event = new CustomEvent('itemdrop', {
-            detail:  {id: this.componentReferId, value: this.value}
+            detail:  {id: this.componentReferId, value: String(this.value)}
         });
         this.dispatchEvent(event);
     }
 
     handeDragOver(ev) {
-        console.log(' drag over ');
         ev.preventDefault();
     }
 

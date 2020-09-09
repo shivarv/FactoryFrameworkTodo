@@ -11,7 +11,10 @@
             <template for:each={caseIdList} for:item="caseId">
                 <div key={caseId.key} class="slds-col">
                     <span>
-                        <c-case-panel-item record-id={caseId.value} component-reference-id={caseId.key}>
+                        <c-case-panel-item record-id={caseId.value} 
+                        dragged-case-id={draggedCaseId} component-reference-id={caseId.key}
+                        onitemdrag={handleItemDragStart}  
+                        >
                         </c-case-panel-item>
                     </span>
                 </div>

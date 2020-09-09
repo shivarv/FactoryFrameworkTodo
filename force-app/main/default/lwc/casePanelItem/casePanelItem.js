@@ -14,20 +14,24 @@ export default class CasePanelItem extends LightningElement {
     @api recordId;
     @api objectApiName = 'Case';
     @api  componentReferenceId;
+    @api draggedCaseId;
+    isRetrieved = false;
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS }) caseLookupRecord;
     _caseChidId;
 
     get caseChidId() {
-        this._caseChidId = '';
-        console.log('hello ');
+        console.log('get caseChildId  '+this._caseChidId);
         try {
+            if(this._caseChidId && this._caseChidId !== 'undefined' || this._caseChidId == '') {
+                return this._caseChidId;
+            }
             this._caseChidId = String(getFieldValue(this.caseLookupRecord.data, CASECUST_FIELD));
         }
         catch(e) {
             alert(e);
         }
         return this._caseChidId;
-    }
+    } 
    
   
     handleError(event) {
@@ -59,12 +63,23 @@ export default class CasePanelItem extends LightningElement {
     }
 
     handleValueSelected(event) {
-        let caseId = String(event.detail.value);
-        this.caseChidId = caseId;
+        this._caseChidId = String(event.detail.value);
+        console.log(' in handleValueSelected method '+ this.caseChidId);
+
     }
 
     handleItemDrop(event) {
-        let val = event.detail.id;
-        this.caseChidId = val;
+        this._caseChidId = this.draggedCaseId;
+        console.log(' in handleItemDrop method '+ this.caseChidId + ' '+ this.draggedCaseId);
+
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        const fields = event.detail.fields;
+        console.log('onsubmit event recordEditForm '+ JSON.stringify(fields));
+        fields.case__c = this._caseChidId;
+        console.log('onsubmit event recordEditForm '+ JSON.stringify(fields));
+        this.template.querySelector('lightning-record-edit-form').submit(fields);
     }
 }
