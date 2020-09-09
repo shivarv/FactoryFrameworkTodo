@@ -1,17 +1,33 @@
-import { LightningElement, api} from 'lwc';
+import { LightningElement, api, wire} from 'lwc';
 import PRIORITY_FIELD from '@salesforce/schema/Case.Priority'; 
 import CASENUMBER_FIELD from '@salesforce/schema/Case.CaseNumber';
 import CASECUST_FIELD from '@salesforce/schema/Case.case__c';
 import STATUS_FIELD from '@salesforce/schema/Case.Status'; 
 import SUBJECT_FIELD from '@salesforce/schema/Case.Subject';
+import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
+import AlternateTxtRecordName from '@salesforce/schema/EmailDomainKey.AlternateTxtRecordName';
+
+const FIELDS = [PRIORITY_FIELD, CASECUST_FIELD];
 export default class CasePanelItem extends LightningElement {
     //@api recordId = '5004K0000029nUHQAY';
     isRenderedValue = false;
     @api recordId;
     @api objectApiName = 'Case';
     @api  componentReferenceId;
-    fields = [PRIORITY_FIELD, CASENUMBER_FIELD, CASECUST_FIELD, 
-        STATUS_FIELD, SUBJECT_FIELD];
+    @wire(getRecord, { recordId: '$recordId', fields: FIELDS }) caseLookupRecord;
+
+    get caseLookupRecordId() {
+        let datav = '';
+        console.log('hello ');
+        try {
+            datav = String(getFieldValue(this.caseLookupRecord.data, CASECUST_FIELD));
+        }
+        catch(e) {
+            alert(e);
+        }
+        return datav;
+    }
+   
   
     handleError(event) {
         console.log(event.detail);
@@ -44,19 +60,5 @@ export default class CasePanelItem extends LightningElement {
     handleValueSelected(event) {
         let caseId = event.detail.value;
         alert(caseId);
-    }
-
-    renderedCallback() {
-        alert(' in rendered callback');
-        debugger;
-        if(this.isRenderedValue === true) {
-            return;
-        }
-        this.isRenderedValue = true;
-        let val = '5004K0000029nUHQAY';
-        let cSearchTemplete = this.template.querySelector('c-custom-lookup');
-        console.log(' rendered callback ' + cSearchTemplete);
-        cSearchTemplete.setCaseId(val);
-            
     }
 }

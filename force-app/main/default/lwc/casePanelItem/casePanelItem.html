@@ -1,6 +1,4 @@
 <template>
-
- 
     <lightning-card variant="narrow" icon-name="standard:case" >
         <div slot="actions">
             <lightning-button-icon icon-name="utility:down"></lightning-button-icon>
@@ -17,7 +15,7 @@
             </lightning-input-field>
             <c-case-search onvalueselected={handleValueSelected}
                 component-refer-id={componentReferenceId}
-                target-field-api-name='case__c'
+                target-field-api-name='case__c' value={caseLookupRecordId}
                 onitemdrag={handleItemDrag} onitemdrop={handleDrop}
             ></c-case-search>
             <lightning-button
