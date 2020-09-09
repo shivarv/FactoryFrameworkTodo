@@ -12,11 +12,11 @@ export default class CustomLookup extends LightningElement {
 
     handleChange(event) {
         // Creates the event
-        this.fireEvent(event.detail.value);
+        this.value = String(event.detail.value);
+        this.fireEvent(this.value);
     }
 
     fireEvent(value) {
-        this.value = value;
         const selectedEvent = new CustomEvent('valueselected', {
             detail: {id: this.componentReferId, value: value}
         });
@@ -33,7 +33,7 @@ export default class CustomLookup extends LightningElement {
 
     @api setCaseId(val) {
        // this.template.querySelector('lightning-input-field').val
-        this.value = val;
+        this.value = String(val);
         this.fireEvent(val);
     }
 
@@ -55,7 +55,6 @@ export default class CustomLookup extends LightningElement {
     handeDragOver(ev) {
         console.log(' drag over ');
         ev.preventDefault();
-
     }
 
 

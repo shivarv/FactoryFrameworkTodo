@@ -15,17 +15,18 @@ export default class CasePanelItem extends LightningElement {
     @api objectApiName = 'Case';
     @api  componentReferenceId;
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS }) caseLookupRecord;
+    _caseChidId;
 
-    get caseLookupRecordId() {
-        let datav = '';
+    get caseChidId() {
+        this._caseChidId = '';
         console.log('hello ');
         try {
-            datav = String(getFieldValue(this.caseLookupRecord.data, CASECUST_FIELD));
+            this._caseChidId = String(getFieldValue(this.caseLookupRecord.data, CASECUST_FIELD));
         }
         catch(e) {
             alert(e);
         }
-        return datav;
+        return this._caseChidId;
     }
    
   
@@ -58,7 +59,12 @@ export default class CasePanelItem extends LightningElement {
     }
 
     handleValueSelected(event) {
-        let caseId = event.detail.value;
-        alert(caseId);
+        let caseId = String(event.detail.value);
+        this.caseChidId = caseId;
+    }
+
+    handleItemDrop(event) {
+        let val = event.detail.id;
+        this.caseChidId = val;
     }
 }
