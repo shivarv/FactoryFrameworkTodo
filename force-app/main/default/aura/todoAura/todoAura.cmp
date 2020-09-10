@@ -10,7 +10,7 @@
                 <c:todoItemAura todoItem="{!indTodoItem}" ></c:todoItemAura>
             </div>
         </aura:iteration>
-        <button onclick="{!c.saveChanges}" class="slds-media_center sub-button">{!$Label.c.SaveButton}</button>
+        <button onclick="{!c.saveChanges}" class="sub-button">{!$Label.c.SaveButton}</button>
     </div>
     <aura:if isTrue="{!v.showSpinner}">
         <lightning:spinner alternative-text="Loading"></lightning:spinner>
