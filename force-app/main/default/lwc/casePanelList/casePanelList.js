@@ -1,6 +1,6 @@
-import { LightningElement, track } from 'lwc';
+import { LightningElement, track} from 'lwc';
 
-export default class CasePaneList extends LightningElement {
+export default class CasePanelList extends LightningElement {
     @track caseIdList;
     @track recordName;
     targetApiName='case__c';
