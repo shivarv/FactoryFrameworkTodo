@@ -1,4 +1,4 @@
 <aura:application extends="force:slds">
-    <c:casePanelList></c:casePanelList>
-
+    <!-- <c:casePanelItem></c:casePanelItem> -->
+    <c:caseContainer></c:caseContainer>
 </aura:application>
