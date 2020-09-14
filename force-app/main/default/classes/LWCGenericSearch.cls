@@ -38,7 +38,7 @@ public with sharing class LWCGenericSearch {
         if(String.isBlank(searchParam.sortBy)) {
             searchParam.sortBy = 'Id';
         }
-        if(String.isNotBlank(searchParam.sortBy)) {
+        if(String.isNotBlank(searchParam.sortBy)){
             executeQuery += ' ORDER BY ' + searchParam.sortBy + ' '+
                             (!searchParam.sortAsc ? ' ASC ' : ' DESC ');
         }

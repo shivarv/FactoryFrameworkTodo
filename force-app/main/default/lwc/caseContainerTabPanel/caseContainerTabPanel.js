@@ -3,7 +3,7 @@ import { LightningElement, api } from 'lwc';
 export default class CaseContainerTabPanel extends LightningElement {
 
     @api content;
-    lookupOptionValue = 'CaseNumber';
+    lookupOptionValue = 'CreatedDate';
 
     get options() {
         return [

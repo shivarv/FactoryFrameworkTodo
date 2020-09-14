@@ -7,17 +7,27 @@ const DELAY = 300;
 export default class GenericLookup extends LightningElement {
 
     @api lookupSearchLabel;
-    @track usersList
+    @track usersList;
     @track searchKey;
     error;
+    isExecuted = false;
 
-    @track selectedUserId;
+    @api selectedUserId;
 
     constructor() {
         super();
+        this.usersList = [];
         if(!this.searchKey) {
             this.searchKey = '';
         }
+        //this.searchApex();
+    }
+
+    renderedCallback() {
+        if(this.isExecuted) {
+            return;
+        }
+        this.isExecuted = true;
         this.searchApex();
     }
 
@@ -37,6 +47,7 @@ export default class GenericLookup extends LightningElement {
                                         value: result[i].FirstName + '-' + result[i].LastName });
                 }
                 that.usersList = usersList;
+                that.setSelectBoxValue(that.selectedUserId);
                 console.log(' in user result op : ');
                 console.log(JSON.stringify(result));
             })
@@ -69,8 +80,24 @@ export default class GenericLookup extends LightningElement {
         this.selectedUserId = event.currentTarget.dataset.item;
         const itemVal = this.selectedUserId;
         this.toggleDiv();
+        this.setSelectBoxValue(itemVal);
+        this.fireEvent(itemVal);
+    }
+
+    setSelectBoxValue(itemVal) {
+        if(!itemVal || itemVal === '') {
+            return;
+        }
         this.template.querySelector('input').value = this.usersList.find( function(ele) {
             return ele.id === itemVal;
         }).value; 
+    }
+
+    fireEvent(value) {
+        const selectedEvent = new CustomEvent('userselect', {
+            detail: {userId: value}
+        });
+        //dispatching the custom event
+        this.dispatchEvent(selectedEvent);
     }
 }

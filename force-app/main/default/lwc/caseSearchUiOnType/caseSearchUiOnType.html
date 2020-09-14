@@ -1,4 +1,38 @@
 <template>
     {type}
-    <c-generic-lookup></c-generic-lookup>
+
+    <template if:true={isUserVisible} >
+        <c-generic-lookup selected-user-id={chosenUserValue} onuserselect={handleUserSelectEvent}>
+        </c-generic-lookup>
+    </template>
+
+    <template if:true={isStatusVisible} >
+        <div class="slds-panel__body">
+            <lightning-combobox
+                name="type"
+                label="Search Type"
+                value={chosenStatusValue}
+                placeholder="case status"
+                options={caseStatusOptions}
+                onchange={handleCaseStatusChange}>
+            </lightning-combobox>
+        </div>
+    </template>
+    <template if:true={isCreatedDateVisible} >
+        <lightning-input type="date" name="dateField" value={chosenDateValue} onchange={handleDateFieldChange} 
+                                        label="Enter a date" ></lightning-input>
+    </template>
+
+    <lightning-button variant="Base" label="Search" onclick={searchClicked} 
+                    class="slds-m-left_x-small"></lightning-button>
+
+    <c-lwc-generic-search
+        field-names={fieldNames}
+        object-name={objectName}
+        columns={columns}
+        type={type}
+        created-date={chosenDateValue}
+        user-id={chosenUserValue}
+        status={chosenStatusValue}>
+    </c-lwc-generic-search>
 </template>

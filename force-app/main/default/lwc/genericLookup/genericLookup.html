@@ -16,7 +16,7 @@
         </div>
             <template if:true={usersList}>
                 <div id="listbox-id-2" data-id='userList'
-                        class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
+                        class="slds-hide slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
                 <ul class="slds-listbox slds-listbox_vertical" role="presentation">
                 <template for:each={usersList} for:item="user">
                           <li role="presentation" class="" data-item={user.id} key={user.key} onclick={handleUserSelect}>
@@ -37,26 +37,6 @@
                     </ul>
                 </div>
             </template>
-            <!--
-          <div id="listbox-id-2" class="slds-dropdown slds-dropdown_length-with-icon-7 slds-dropdown_fluid" role="listbox">
-            <ul class="slds-listbox slds-listbox_vertical" role="presentation">
-              <li role="presentation" class="">
-                <div id="option1" class="slds-media slds-listbox__option slds-listbox__option_entity slds-listbox__option_has-meta" role="option">
-                  <span class="slds-media__figure slds-listbox__option-icon">
-                    <span class="slds-icon_container slds-icon-standard-account">
-                      <svg class="slds-icon slds-icon_small" aria-hidden="true">
-                        <use xlink:href="/assets/icons/standard-sprite/svg/symbols.svg#account"></use>
-                      </svg>
-                    </span>
-                  </span>
-                  <span class="slds-media__body">
-                    <span class=" slds-listbox__option-text_entity">Burlington Textiles Corp of America</span>
-                    <span class="slds-listbox__option-meta ">Account • Burlington, NC</span>
-                  </span>
-                </div>
-              </li>
-            </ul>
-          </div> -->
         </div>
       </div>
     </div>
