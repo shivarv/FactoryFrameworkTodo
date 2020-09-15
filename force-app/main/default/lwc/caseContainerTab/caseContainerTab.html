@@ -2,19 +2,22 @@
     <div class="slds-grid slds-gutters">
         <div class="slds-col slds-size_1-of-3" style="width: 33vw;height: 85vh; margin-left: 2rem;">
             <span >
-                <c-case-container-tab-panel content="content1" component-id="tab1">
+                <c-case-container-tab-panel content="content1"
+                                component-id={tabId1} panel-id={tabId1}>
                 </c-case-container-tab-panel>
             </span>
         </div>
         <div class="slds-col slds-size_1-of-3">
             <span>
-              <c-case-container-tab-panel content="content2" component-id="tab2">
+              <c-case-container-tab-panel content="content2" 
+                                component-id={tabId2} panel-id={tabId2}>
               </c-case-container-tab-panel>
             </span>
         </div>
         <div class="slds-col slds-size_1-of-3">
             <span>
-             <c-case-container-tab-panel content="content3" component-id="tab3">
+             <c-case-container-tab-panel content="content3"
+                                component-id={tabId3} panel-id={tabId3}>
              </c-case-container-tab-panel>
             </span>
         </div>

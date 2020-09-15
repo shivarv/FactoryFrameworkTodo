@@ -8,7 +8,8 @@ export default class CaseContainerTabPanel extends LightningElement {
     @track isSearchMode = true;
     @api draggedCaseId;
     @api componentId;
-    
+    @api panelId;
+
     get options() {
         return [
             { label: 'CreatedDate', value: 'CreatedDate' },

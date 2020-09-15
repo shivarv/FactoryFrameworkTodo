@@ -1,8 +1,10 @@
 <template>
     <template if:true={caseLookupRecord.data}>
-        <lightning-card variant="narrow" title={caseRecordNumber} icon-name="standard:case" >
-            <div slot="actions">
-                <lightning-button-icon icon-name="utility:down"></lightning-button-icon>
+        <lightning-card variant="narrow" title="Case Record"  >
+            <div draggable="true" ondragstart={handleDragStart} 
+                            ondragover={handleDragOver} class="slds-form-element_stacked">
+                <lightning-icon icon-name="standard:case" alternative-text="Case" title="Case"></lightning-icon>
+                {caseRecordNumber}
             </div>
             <lightning-record-edit-form record-id={recordId} object-api-name={objectApiName} onsubmit={handleSubmit}>
                 <lightning-messages>
@@ -11,16 +13,21 @@
                 </lightning-input-field>
                 <lightning-input-field field-name="Subject">
                 </lightning-input-field>
-                <c-custom-lookup field-label="Parent Case" child-object-api-name='Case' 
-                    data-id={componentReferenceId} component-refer-id={componentReferenceId} 
-                    target-field-api-name='case__c' onvalueselected={handleValueSelected}
-                    onitemdrop={handleItemDrop}
-                    value={caseChidId}
-                ></c-custom-lookup>
+                <div ondrop={handleDrop} ondragover={handleDragOver}>
+                    <c-custom-lookup field-label="Parent Case" child-object-api-name='Case' 
+                        data-id={componentReferenceId} component-refer-id={componentReferenceId} 
+                        target-field-api-name='case__c' onvalueselected={handleValueSelected}
+                        value={caseChidId}
+                    ></c-custom-lookup>
+                </div>
                 <lightning-record-edit-form record-id={caseChidId} object-api-name={objectApiName}>
                     <lightning-input-field field-name="Description">
                     </lightning-input-field>
                 </lightning-record-edit-form>
+                
+            </lightning-record-edit-form>
+
+            <div class="alignButtonCenter">
                 <lightning-button
                     class="slds-var-m-top_small"
                     variant="brand"
@@ -28,7 +35,7 @@
                     name="save"
                     label="save">
                 </lightning-button>
-            </lightning-record-edit-form>
+            </div>
         </lightning-card>
     </template>
 </template>

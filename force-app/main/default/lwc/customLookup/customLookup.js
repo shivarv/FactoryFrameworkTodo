@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable @lwc/lwc/no-api-reassignments */
 import { LightningElement, api } from 'lwc';
 
 export default class CustomLookup extends LightningElement {
