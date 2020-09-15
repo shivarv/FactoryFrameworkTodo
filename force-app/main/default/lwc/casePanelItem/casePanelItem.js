@@ -7,7 +7,7 @@ import SUBJECT_FIELD from '@salesforce/schema/Case.Subject';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import AlternateTxtRecordName from '@salesforce/schema/EmailDomainKey.AlternateTxtRecordName';
 
-const FIELDS = [PRIORITY_FIELD, CASECUST_FIELD];
+const FIELDS = [PRIORITY_FIELD, CASECUST_FIELD, CASENUMBER_FIELD];
 export default class CasePanelItem extends LightningElement {
     //@api recordId = '5004K0000029nUHQAY';
     isRenderedValue = false;
@@ -19,6 +19,10 @@ export default class CasePanelItem extends LightningElement {
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS }) caseLookupRecord;
     _caseChidId;
 
+    get caseRecordNumber() {
+        return this.caseLookupRecord.data.fields.CaseNumber.value;
+    }
+
     get caseChidId() {
         console.log('get caseChildId  '+this._caseChidId);
         try {
@@ -28,8 +32,10 @@ export default class CasePanelItem extends LightningElement {
             this._caseChidId = String(getFieldValue(this.caseLookupRecord.data, CASECUST_FIELD));
         }
         catch(e) {
+            this._caseChidId ='';
             alert(e);
         }
+        this._caseChidId = (this._caseChidId === 'null' ? '' : this._caseChidId);
         return this._caseChidId;
     } 
    

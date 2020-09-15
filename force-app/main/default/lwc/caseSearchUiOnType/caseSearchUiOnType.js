@@ -10,13 +10,18 @@ export default class CaseSearchUiOnType extends LightningElement {
     @track fieldNames;
     @track columns;
 
+    isDatatableVisible = false;
+
     constructor() {
         super();
         this.objectName = 'Case';
         this.fieldNames = ['Id, CaseNumber'];
         this.columns = [ 
-                            { label: 'Id', fieldName: 'Id' },
-                            { label: 'caseNumber', fieldName: 'CaseNumber' }
+                            { label: 'caseNumber', fieldName: 'recordLink',
+                                type: "url",  
+                                typeAttributes: { label: { fieldName: "CaseNumber" }, tooltip:"CaseNumber", target: "_blank" }  
+                            },
+                            { label: 'Id', fieldName: 'Id' }
                         ];
     }
 

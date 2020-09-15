@@ -23,8 +23,20 @@
                 options={options}
                 onchange={handleChange}>
             </lightning-combobox>
+            <template if:true={isSearchMode}>
+                <c-case-search-ui-on-type type={lookupOptionValue} 
+                    onrecordselected={handleRecordSelected}></c-case-search-ui-on-type>
+            </template> 
+    
+            <template if:false={isSearchMode}>
+                <c-case-panel-item record-id={userSelectedCaseId} 
+                            dragged-case-id={draggedCaseId} component-reference-id={componentId}
+                            onitemdrag={handleItemDragStart}  
+                            >
+                            </c-case-panel-item>
+            </template>
         </div>
-        <c-case-search-ui-on-type type={lookupOptionValue}></c-case-search-ui-on-type>
+        
       </div>
    
   

@@ -41,7 +41,12 @@ export default class LwcGenericSearch extends LightningElement {
                 whereCondition: this.getWhereCondition(),
             }})
             .then(result => {
-                that.data = result;
+                that.data = [];
+                for(let i in result) {
+                    let tempRecord = Object.assign({}, result[i]); //cloning object  
+                    tempRecord.recordLink = "/" + tempRecord.Id;  
+                    that.data.push(tempRecord); 
+                }
                 console.log(' in user result op : ');
                 console.log(JSON.stringify(result));
             })
@@ -72,8 +77,24 @@ export default class LwcGenericSearch extends LightningElement {
     }
 
 
-    handleRowActions(event) {
+    handleRowSelection(event) {
         const selectedRows = event.detail.selectedRows;
+        this.fireEvent(selectedRows[0].Id);
+    
+    }
+
+    handleRowAction(event) {
+        console.log(JSON.stringify(event.detail.action));
        
+    }
+
+    fireEvent(value) {
+        const recordSelectedEvent = new CustomEvent('recordselected', {
+            detail: {recordId: value},
+                bubbles: true, composed: true
+            }
+        );
+        //dispatching the custom event
+        this.dispatchEvent(recordSelectedEvent);
     }
 }

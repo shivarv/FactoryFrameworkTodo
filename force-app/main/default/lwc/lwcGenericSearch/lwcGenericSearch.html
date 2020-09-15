@@ -4,7 +4,10 @@
         data={data}
         columns={columns}
         key-field="id"
-        onrowaction={handleRowActions}>
+        max-row-selection="1"
+        onrowselection={handleRowSelection}
+        onrowaction={handleRowAction}
+    >
     </lightning-datatable>
     </div>
 </template>
