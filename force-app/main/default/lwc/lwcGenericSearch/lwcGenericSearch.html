@@ -1,13 +1,13 @@
 <template>
-    <div style="height: 300px">
-    <lightning-datatable
-        data={data}
-        columns={columns}
-        key-field="id"
-        max-row-selection="1"
-        onrowselection={handleRowSelection}
-        onrowaction={handleRowAction}
-    >
-    </lightning-datatable>
+    <div style="height: 300px" class="slds-hide" data-id="dataList">
+        <lightning-datatable
+            data={data}
+            columns={columns}
+            key-field="id"
+            max-row-selection="1"
+            onrowselection={handleRowSelection}
+            onrowaction={handleRowAction}
+        >
+        </lightning-datatable>
     </div>
 </template>

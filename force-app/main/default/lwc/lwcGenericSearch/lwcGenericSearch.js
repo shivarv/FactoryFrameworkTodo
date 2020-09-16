@@ -21,6 +21,7 @@ export default class LwcGenericSearch extends LightningElement {
 
     @api
     searchRecords() {
+        this.removeTableHideCss();
         this.getRecordsFromBackend();
     }
 
@@ -96,5 +97,11 @@ export default class LwcGenericSearch extends LightningElement {
         );
         //dispatching the custom event
         this.dispatchEvent(recordSelectedEvent);
+    }
+
+
+    removeTableHideCss() {
+        const dataIdToClose = 'dataList';
+        this.template.querySelector(`div[data-id="${dataIdToClose}"]`).classList.remove('slds-hide');
     }
 }
