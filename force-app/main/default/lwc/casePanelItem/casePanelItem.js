@@ -1,9 +1,14 @@
+/* eslint-disable no-alert */
 /* eslint-disable @lwc/lwc/no-api-reassignments */
 /* eslint-disable no-unused-vars */
 import { LightningElement, api, wire} from 'lwc';
+import { updateRecord } from 'lightning/uiRecordApi';
+import { refreshApex } from '@salesforce/apex';
 import PRIORITY_FIELD from '@salesforce/schema/Case.Priority'; 
 import CASENUMBER_FIELD from '@salesforce/schema/Case.CaseNumber';
 import CASECUST_FIELD from '@salesforce/schema/Case.case__c';
+import CASEID_FIELD from '@salesforce/schema/Case.Id';
+import CASEDESC_FIELD from '@salesforce/schema/Case.Description';
 import { getRecord, getFieldValue } from 'lightning/uiRecordApi';
 import { createMessageContext, releaseMessageContext,
             subscribe, unsubscribe, publish } from 'lightning/messageService';
@@ -11,7 +16,7 @@ import MESSAGECHANNEL from "@salesforce/messageChannel/RecordDraggedMessageChann
 import { ShowToastEvent } from 'lightning/platformShowToastEvent';
 
 
-const FIELDS = [PRIORITY_FIELD, CASECUST_FIELD, CASENUMBER_FIELD];
+const FIELDS = [PRIORITY_FIELD, CASECUST_FIELD, CASENUMBER_FIELD, CASEDESC_FIELD];
 export default class CasePanelItem extends LightningElement {
     context = createMessageContext();
     subscription = null;
@@ -23,11 +28,17 @@ export default class CasePanelItem extends LightningElement {
     @api draggedCaseId;
     isRetrieved = false;
     @wire(getRecord, { recordId: '$recordId', fields: FIELDS }) caseLookupRecord;
+    @wire(getRecord, { recordId: '$_caseChidId', fields: FIELDS }) caseChildRecord;
+
     _caseChidId;
 
     constructor() {
         super();
         this.subscribeMC();
+    }
+
+    get caseChildRecordDesValue() {
+        return this.caseChildRecord.data.fields.Description.value;
     }
 
     get caseRecordNumber() {
@@ -99,6 +110,23 @@ export default class CasePanelItem extends LightningElement {
         fields.case__c = this._caseChidId;
         console.log('onsubmit event recordEditForm '+ JSON.stringify(fields));
         this.template.querySelector('lightning-record-edit-form').submit(fields);
+        this.handeParentLookupSubmit();
+    }
+
+    handeParentLookupSubmit() {
+        const fields = {};
+        fields[CASEID_FIELD.fieldApiName] = this.caseChidId;
+        fields[CASEDESC_FIELD.fieldApiName] = this.template.querySelector("[data-field='childDes']").value;
+        const recordInput = { fields };
+        updateRecord(recordInput)
+        .then(() => {
+            console.log('in update success');
+            // Display fresh data in the form
+            return refreshApex(this.caseChildRecord);
+        })
+        .catch(error => {
+            alert(error.body.message);
+        });
     }
 
 

@@ -20,14 +20,17 @@
                         value={caseChidId}
                     ></c-custom-lookup>
                 </div>
+                <!-- 
                 <lightning-record-edit-form record-id={caseChidId} object-api-name={objectApiName}>
                     <lightning-input-field field-name="Description">
                     </lightning-input-field>
                 </lightning-record-edit-form>
-                
-            </lightning-record-edit-form>
-
-            <div class="alignButtonCenter">
+                -->
+            <template if:true={caseChildRecord.data}>
+                <lightning-textarea name="childDes" label="Parent Description"  
+                        data-field ="childDes" value={caseChildRecordDesValue}></lightning-textarea>
+            </template>
+            <div class="slds-var-m-around_medium slds-text-align_center alignButtonCenter">
                 <lightning-button
                     class="slds-var-m-top_small"
                     variant="brand"
@@ -36,6 +39,9 @@
                     label="save">
                 </lightning-button>
             </div>
+            </lightning-record-edit-form>
+
+           
         </lightning-card>
     </template>
 </template>
